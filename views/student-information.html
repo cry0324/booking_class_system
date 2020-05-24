@@ -1,0 +1,125 @@
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../public/css/student-mystyle.css" />
+    <!-- head -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- demo stylesheet -->
+    <link type="text/css" rel="stylesheet" href="../helpers/demo.css?v=2020.2.4325" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/layout.css?v=2020.2.4325" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/elements.css?v=2020.2.4325" />
+    <!-- helper libraries -->
+    <script src="../helpers/jquery-1.12.2.min.js" type="text/javascript"></script>
+    <!-- daypilot libraries -->
+    <script src="../public/js/daypilot-all.min.js?v=2020.2.4325" type="text/javascript"></script>
+    <!-- /head -->
+
+</head>
+<body>
+
+<div class="header">
+    <h1>Student Homepage</h1>
+</div>
+
+<div class="test">
+    <div class="nav">
+        <!--<ul class="nav">-->
+        <a href="/student-information" id="1" class="btn2"><img src="../public/img/My.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+        <a href="/student-information" id="2" class="btn2">Information</a><br><br>
+        <a href="/student-timetable" id="3" class="btn1"><img src="../public/img/Calendar.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+        <a href="/student-timetable" id="4" class="btn1">Timetable</a><br><br>
+<!--        <a href="/student-settings" id="5" class="btn1"><img src="../public/img/Setting.png" style="width:75px;height: 75px;align-content: center"></a> <br>-->
+<!--        <a href="/student-settings" id="6" class="btn1">Settings</a><br><br>-->
+        <a href="/login" id="7" class="btn1"><img src="../public/img/Logout.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+        <a href="/login" id="8" class="btn1">Sign Out</a><br><br>
+        <!--    </ul>-->
+    </div>
+<div class="contact w clearfix" id="box1">
+    <div class="co">
+        <form action="#">
+            <h2>Name</h2>
+            <input class="txt" type="text" placeholder="Rachel" />
+            <h2>Email address</h2>
+            <input class="txt" type="email" id="email" name="email"  placeholder="rachel@bristol.ac.uk"/>
+            <h2>Phone number</h2>
+            <input class="txt" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  placeholder="443-21-84"/>
+            <h2>Date of Birth</h2>
+            <form >
+                <input type="datetime-local" id="birthdaytime" name="birthdaytime" style="width: 295px" />
+            </form>
+            <br>
+        </form>
+    </div>
+
+    <div class="nu">
+        <h2>Photo</h2>
+        <img src="../public/img/avater.jpg" style="width: 200px ">
+    </div>
+
+    <br><br>
+    <h2>Change profile photo</h2>
+    <form>
+        <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
+    </form>
+
+</div>
+</div>
+
+<div class="footer">
+    Copyright ? Bristol.RainbowGroup
+</div>
+
+<script type="text/javascript">
+
+
+    window.onload = function(){
+        var arr = document.getElementsByTagName('a');
+        for(var i = 0;i<arr.length;i++){
+            arr[i].onclick = function(){
+                if ((this.id == '1') || (this.id=='2'))
+                {
+                    document.getElementById("box1").style.display = 'block' ;
+                    document.getElementById("box2").style.display = 'none' ;
+                    document.getElementById("box3").style.display = 'none' ;
+                    document.getElementById("box4").style.display = 'none' ;
+                }
+                else if((this.id == '3') || (this.id=='4'))
+                {
+                    document.getElementById("box1").style.display = 'none' ;
+                    document.getElementById("box2").style.display = 'block' ;
+                    document.getElementById("box3").style.display = 'none' ;
+                    document.getElementById("box4").style.display = 'none' ;
+                }
+                else if((this.id == '5') || (this.id=='6')){
+                    document.getElementById("box1").style.display = 'none' ;
+                    document.getElementById("box2").style.display = 'none' ;
+                    document.getElementById("box3").style.display = 'block' ;
+                    document.getElementById("box4").style.display = 'none' ;
+                }else{
+                    document.getElementById("box1").style.display = 'none' ;
+                    document.getElementById("box2").style.display = 'none' ;
+                    document.getElementById("box3").style.display = 'none' ;
+                    document.getElementById("box4").style.display = 'block' ;
+                }
+
+                if(this.className == 'btn1' ){
+                    this.className = 'btn2';
+                    var name = this.id;
+                    var btn = document.getElementsByClassName('btn2');
+                    for(var j=0;j<btn.length;j++){
+                        if(btn[j].id!=name){
+                            btn[j].className = 'btn1';
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

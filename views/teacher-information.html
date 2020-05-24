@@ -1,0 +1,158 @@
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../public/css/teacher-mystyle.css" />
+    <!-- head -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- demo stylesheet -->
+    <link type="text/css" rel="stylesheet" href="../helpers/demo.css?v=2020.2.4325" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/layout.css?v=2020.2.4325" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/elements.css?v=2020.2.4325" />
+    <!-- helper libraries -->
+    <script src="../helpers/jquery-1.12.2.min.js" type="text/javascript"></script>
+    <!-- daypilot libraries -->
+    <script src="../public/js/daypilot-all.min.js?v=2020.2.4325" type="text/javascript"></script>
+    <!-- /head -->
+
+</head>
+<body>
+
+<div class="header">
+    <h1>Teacher Homepage</h1>
+</div>
+
+<div class="test">
+    <div class="nav">
+        <!--<ul class="nav">-->
+        <a href="/teacher-information" id="1" class="btn2"><img src="../public/img/My.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+        <a href="/teacher-information" id="2" class="btn2">Information</a><br><br>
+        <a href="/teacher-timetable" id="3" class="btn1"><img src="../public/img/Calendar.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+        <a href="/teacher-timetable" id="4" class="btn1">Timetable</a><br><br>
+<!--        <a href="/teacher-settings" id="5" class="btn1"><img src="../public/img/Setting.png" style="width:75px;height: 75px;align-content: center"></a> <br>-->
+<!--        <a href="/teacher-settings" id="6" class="btn1">Settings</a><br><br>-->
+        <a href="/login" id="7" class="btn1"><img src="../public/img/Logout.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+        <a href="/login" id="8" class="btn1">Sign Out</a><br><br>
+        <!--    </ul>-->
+    </div>
+<div class="contact w clearfix" id="box1">
+    <div class="co">
+        <form action="#">
+            <h2>Name</h2>
+            <input class="txt" type="text" placeholder="Rachel" />
+            <h2>Email address</h2>
+            <input class="txt" type="email" id="email" name="email"  placeholder="rachel@bristol.ac.uk"/>
+            <h2>Phone number</h2>
+            <input class="txt" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  placeholder="443-21-84"/>
+            <h2>Date of Birth</h2>
+            <form >
+                <input type="datetime-local" id="birthdaytime" name="birthdaytime" style="width: 295px" />
+            </form>
+            <br>
+<!--            <h2>Course</h2>-->
+<!--            &lt;!&ndash;        <textarea class="tarea"  placeholder="Introduction"></textarea>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <button class="btn">Send it</button>&ndash;&gt;-->
+<!--            <form>-->
+<!--                <select name="majors" style="width: 300px">-->
+<!--                    <option class="course" value="Math">Math</option>-->
+<!--                    <option class="course" value="C">C</option>-->
+<!--                    <option class="course" value="Java" selected="Java">Java</option>-->
+<!--                    <option class="course" value="Database">Database</option>-->
+<!--                </select>-->
+<!--            </form>-->
+
+            <br><br>
+
+            <h2>Introduction:</h2>
+            <textarea class="tarea"  placeholder="Very excellent teacher           Always dish up question in a humorous way "></textarea>
+
+            <br><br>
+            <br><br>
+
+            <h2>Available Time:</h2>
+            <input  type="text" placeholder="14/04: 8:00AM--3:00PM" />
+            <input type="submit" value="Save" />
+            <input type="submit" value="Delete" />
+            <input  type="text" placeholder="15/04: 9:00AM--6:00PM" />
+            <input type="submit" value="Save" />
+            <input type="submit" value="Delete" />
+            <input  type="text" placeholder="20/04: 10:00AM--3:00PM" />
+            <input type="submit" value="Save" />
+            <input type="submit" value="Delete" />
+
+        </form>
+    </div>
+
+    <div class="nu">
+        <h2>Photo</h2>
+        <img src="../public/img/avater.jpg" style="width: 200px ">
+    </div>
+
+    <br><br>
+    <h2>Change profile photo</h2>
+    <form>
+        <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg"/>
+    </form>
+
+</div>
+<!--<div class="settings" id="box3">third</div>-->
+<div class="signout" id="box4">forth</div>
+</div>
+
+<div class="footer">
+    Copyright ? Bristol.RainbowGroup
+</div>
+
+<script type="text/javascript">
+
+
+    window.onload = function(){
+        var arr = document.getElementsByTagName('a');
+        for(var i = 0;i<arr.length;i++){
+            arr[i].onclick = function(){
+                if ((this.id == '1') || (this.id=='2'))
+                {
+                    document.getElementById("box1").style.display = 'block' ;
+                    document.getElementById("box2").style.display = 'none' ;
+                    document.getElementById("box3").style.display = 'none' ;
+                    document.getElementById("box4").style.display = 'none' ;
+                }
+                else if((this.id == '3') || (this.id=='4'))
+                {
+                    document.getElementById("box1").style.display = 'none' ;
+                    document.getElementById("box2").style.display = 'block' ;
+                    document.getElementById("box3").style.display = 'none' ;
+                    document.getElementById("box4").style.display = 'none' ;
+                }
+                else if((this.id == '5') || (this.id=='6')){
+                    document.getElementById("box1").style.display = 'none' ;
+                    document.getElementById("box2").style.display = 'none' ;
+                    document.getElementById("box3").style.display = 'block' ;
+                    document.getElementById("box4").style.display = 'none' ;
+                }else{
+                    document.getElementById("box1").style.display = 'none' ;
+                    document.getElementById("box2").style.display = 'none' ;
+                    document.getElementById("box3").style.display = 'none' ;
+                    document.getElementById("box4").style.display = 'block' ;
+                }
+
+                if(this.className == 'btn1' ){
+                    this.className = 'btn2';
+                    var name = this.id;
+                    var btn = document.getElementsByClassName('btn2');
+                    for(var j=0;j<btn.length;j++){
+                        if(btn[j].id!=name){
+                            btn[j].className = 'btn1';
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

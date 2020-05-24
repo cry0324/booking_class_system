@@ -1,0 +1,52 @@
+body {
+  background-color: #f9f9f9;
+}
+
+img {
+  height: 100px;
+}
+
+h1{
+  padding-top: 50px;
+  text-align: center;
+  color: yellow;
+}
+
+.banner{
+  width: 100%;
+  height: 800px;
+  background: url(../img/banner0-blackboard.jpg) center top;
+  background-size: cover;
+}
+
+.main {
+  width: 340px;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: #333;
+}
+
+.main .header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.main .header h1 {
+  font-size: 26px;
+}
+
+.main form {
+  padding: 50px;
+  margin-bottom: 15px;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.main .message {
+  padding: 10px;
+  padding-bottom: 0;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+  background: white;
+}

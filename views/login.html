@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../public/css/login.css">
+    <link rel="icon" href="../public/img/BCS.jpeg" alt="BCS-logo">
+</head>
+
+<body>
+<div class="banner">
+    <h1>The account login</h1>
+    <div class="main">
+    <div class="header">
+        <a href="/">
+            <img src="../public/img/BCS.jpeg" alt="">
+        </a>
+    </div>
+    <form id="login_form">
+        <div class="form-group">
+            <label for="email"></label>
+            <input type="email" class="form_control" id="email" name="email" placeholder="Email address" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="password"></label>
+            <input type="password" class="form_control" id="password" name="password" placeholder="Password">
+        </div>
+<!--        <div class="form-group">-->
+<!--            <select name="status" style="width: 225px">-->
+<!--                <option class="status" value="student">Student</option>-->
+<!--                <option class="status" value="teacher">Teacher</option>-->
+<!--                <option class="status" value="staff" selected="Staff">Staff</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <a class="pull-right" href="/forgotten_password">Forgotten Password?</a>-->
+        <div class="checkbox">
+            <label>
+                <input type="checkbox">Remember Me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Login</button>
+    </form>
+        <div class="message">
+            <p>Not a member?<a href="/register"> Join now</a>.</p>
+        </div>
+    </div>
+</div>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script>
+    $('#login_form').on('submit', function (e) {
+        e.preventDefault()
+        var formData = $(this).serialize()
+        console.log(formData)
+        $.ajax({
+            url: '/login',
+            type: 'post',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                var err_code = data.err_code
+                if (err_code === 0) {
+                    window.location.href = '/student'
+                } else if (err_code === 1) {
+                    window.location.href = '/teacher'
+                } else if (err_code === 2) {
+                    window.location.href = '/staff'
+                } else if (err_code === 3) {
+                    window.alert('Invalid email or password.')
+                } else if (err_code === 500) {
+                    window.alert('The server is busy, please try again later!')
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
