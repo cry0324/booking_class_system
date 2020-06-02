@@ -1,8 +1,5 @@
 # Project Name: Booking Class System
 
-## start the server ## 
-`$ node app.js`
-
 ## Author ##
 |                               Ruoyan CHi                                  |                               Huiyu Ran                                  |                               Yijing Zhu                               |
 | :---------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------: |
@@ -17,4 +14,19 @@ We have created two sides for the system including client side and server side.
 ### client side ###
 Use HTML, CSS and js to display the static wedpage
 ### server side ###
-Use Mongodb to store the user information including **Email Address**, **Password**, **Full Name**, **Date of Birth**, **Phone Number** and **Status** *(student, teacher and staff)*. In addition, these information will be shown in student-information page, teacher-information page and staff-information page.
+#### start the server ####
+`$ node app.js`
+
+The system can only be used for one student, one teacher and one staff member at a time. During the test, a student, a teacher and a staff member should be registered, and the data will be stored in the database.
+
+For example, using the following information to register, which include Email Address, Password, Full Name, Date of Birth, Phone Number and Status.
+
+|                               harry@student.com                                  |                               severus@teacher.com                                  |                               albus@staff.com                               |
+| :---------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------: |
+|                                 harry                                 |                                serverus                                 |                               albus                                |
+|     Harry Potter     |     Severus Snape     |     Albus Dumbledore     |
+|     31/7/1980     |     9/1/1960     |     1/8/1881     |
+|     7851892175     |     7917482487     |     7098472815     |
+|     student     |     teacher     |     staff     |
+
+Use Mongodb to store the user information. In addition, these information will be shown in student-information page, teacher-information page and staff-information page.
