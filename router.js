@@ -169,8 +169,6 @@ router.get('/student-information', async (req, res) => {
         <a href="/student-information" id="2" class="btn2">Information</a><br><br>
         <a href="/student-timetable" id="3" class="btn1"><img src="public/img/Calendar.png" style="width:75px;height: 75px;align-content: center"></a> <br>
         <a href="/student-timetable" id="4" class="btn1">Timetable</a><br><br>
-<!--        <a href="/student-settings" id="5" class="btn1"><img src="public/img/Setting.png" style="width:75px;height: 75px;align-content: center"></a> <br>-->
-<!--        <a href="/student-settings" id="6" class="btn1">Settings</a><br><br>-->
         <a href="/login" id="7" class="btn1"><img src="public/img/Logout.png" style="width:75px;height: 75px;align-content: center"></a> <br>
         <a href="/login" id="8" class="btn1">Sign Out</a><br><br>
         <!--    </ul>-->
@@ -204,10 +202,25 @@ router.get('/student-information', async (req, res) => {
     </div>
 
     <br><br>
-    <h2>Change profile photo</h2>
-    <form>
-        <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
-    </form>
+    <div class="co">
+            <h2>Change profile photo</h2>
+            <form>
+                <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
+            </form>
+            <br><br>
+            <!--<button type="button">Insert</button>-->
+            <table id = "course" class="gridtable">
+                <thead>
+                <tr>
+                    <th>Lecture Name</th>
+                    <th>Teacher Name</th>
+                    <th>Lecture Time</th>
+                    <th>Modify</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 </div>
 
 <div class="footer">
@@ -215,8 +228,6 @@ router.get('/student-information', async (req, res) => {
 </div>
 
 <script type="text/javascript">
-
-
     window.onload = function(){
         var arr = document.getElementsByTagName('a');
         for(var i = 0;i<arr.length;i++){
@@ -260,7 +271,51 @@ router.get('/student-information', async (req, res) => {
             }
         }
     }
+    
+</script>
+<script type="text/javascript"> 
+    window.onload = function () {
+        var oTab = document.getElementById('course');
+        var url = "/data/timetable.json";
+        var request = new XMLHttpRequest();
+        request.open("get", url);
+        request.send(null);
+        request.onload = function () {
+            if (request.status === 200) {
+                var oTbody = oTab.tBodies[0];
+                var data = JSON.parse(request.responseText);
+                for (var index = 0; index < data.length; index++) {
+                    if(data[index].selected === "1"){
+                        var oTr = document.createElement('tr');
+                        oTbody.appendChild(oTr);
 
+                        var oTd = document.createElement('td');
+                        oTd.innerHTML = data[index].text;
+                        oTr.appendChild(oTd);
+
+                        oTd = document.createElement('td');
+                        oTd.innerHTML = data[index].teacher;
+                        oTr.appendChild(oTd);
+
+                        oTd = document.createElement('td');
+                        oTd.innerHTML = data[index].time;
+                        oTr.appendChild(oTd);
+
+                        oTd = document.createElement('td');
+                        oTr.appendChild(oTd);
+
+                        var oA = document.createElement('a');
+                        oA.innerHTML = "delete";
+                        oA.href = "javascript:;";
+                        oTd.appendChild(oA);
+                        oA.onclick = function () {
+                            oTbody.removeChild(this.parentNode.parentNode);
+                        }
+                    }
+                }
+            }
+        }
+    }
 </script>
 </body>
 </html>
@@ -275,6 +330,8 @@ router.get('/student-information', async (req, res) => {
 router.get('/student-timetable', function (req, res, next) {
   res.render('student-timetable.html')
 })
+
+router.use('/data', express.static('data'))
 
 router.get('/teacher', function (req, res, next) {
   res.render('teacher.html')
@@ -318,8 +375,6 @@ router.get('/teacher-information', async (req, res) => {
         <a href="/teacher-information" id="2" class="btn2">Information</a><br><br>
         <a href="/teacher-timetable" id="3" class="btn1"><img src="public/img/Calendar.png" style="width:75px;height: 75px;align-content: center"></a> <br>
         <a href="/teacher-timetable" id="4" class="btn1">Timetable</a><br><br>
-<!--        <a href="/teacher-settings" id="5" class="btn1"><img src="public/img/Setting.png" style="width:75px;height: 75px;align-content: center"></a> <br>-->
-<!--        <a href="/teacher-settings" id="6" class="btn1">Settings</a><br><br>-->
         <a href="/login" id="7" class="btn1"><img src="public/img/Logout.png" style="width:75px;height: 75px;align-content: center"></a> <br>
         <a href="/login" id="8" class="btn1">Sign Out</a><br><br>
         <!--    </ul>-->
@@ -352,10 +407,26 @@ router.get('/teacher-information', async (req, res) => {
     </div>
 
     <br><br>
-    <h2>Change profile photo</h2>
-    <form>
-        <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
-    </form>
+    <div class="co">
+        <h2>Change profile photo</h2>
+        <form>
+            <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
+        </form>
+        <br><br>
+        <h2>Teacher available time</h2>
+        <button type="button">Insert</button>
+        <table id = "course" class="gridtable">
+            <thead>
+            <tr>
+                <th>Lecture Name</th>
+                <th>Teacher Name</th>
+                <th>Available Time</th>
+                <th>Modify</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 </div>
 
 <div class="footer">
@@ -410,6 +481,48 @@ router.get('/teacher-information', async (req, res) => {
     }
 
 </script>
+<script>
+    window.onload = function () {
+        var oTab = document.getElementById('course');
+        var url = "/data/information.json";
+        var request = new XMLHttpRequest();
+        request.open("get", url);
+        request.send(null);
+        request.onload = function () {
+            if (request.status === 200) {
+                var oTbody = oTab.tBodies[0];
+                var data = JSON.parse(request.responseText);
+                for (var index = 0; index < data.length; index++) {
+                    var oTr = document.createElement('tr');
+                    oTbody.appendChild(oTr);
+
+                    var oTd = document.createElement('td');
+                    oTd.innerHTML = data[index].text;
+                    oTr.appendChild(oTd);
+
+                    oTd = document.createElement('td');
+                    oTd.innerHTML = data[index].teacher;
+                    oTr.appendChild(oTd);
+
+                    oTd = document.createElement('td');
+                    oTd.innerHTML = data[index].time;
+                    oTr.appendChild(oTd);
+
+                    oTd = document.createElement('td');
+                    oTr.appendChild(oTd);
+
+                    var oA = document.createElement('a');
+                    oA.innerHTML = "delete";
+                    oA.href = "javascript:;";
+                    oTd.appendChild(oA);
+                    oA.onclick = function () {
+                        oTbody.removeChild(this.parentNode.parentNode);
+                    }
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>
                 `;
@@ -429,7 +542,6 @@ router.get('/staff', function (req, res, next) {
 })
 
 router.get('/staff-information', async (req, res) => {
-
   let Users = await User.find({status: 2});
   let list = `
  <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
@@ -466,8 +578,6 @@ router.get('/staff-information', async (req, res) => {
         <a href="/staff-information" id="2" class="btn2">Information</a><br><br>
         <a href="/staff-timetable" id="3" class="btn1"><img src="public/img/Calendar.png" style="width:75px;height: 75px;align-content: center"></a> <br>
         <a href="/staff-timetable" id="4" class="btn1">Timetable</a><br><br>
-<!--        <a href="/teacher-settings" id="5" class="btn1"><img src="public/img/Setting.png" style="width:75px;height: 75px;align-content: center"></a> <br>-->
-<!--        <a href="/teacher-settings" id="6" class="btn1">Settings</a><br><br>-->
         <a href="/login" id="7" class="btn1"><img src="public/img/Logout.png" style="width:75px;height: 75px;align-content: center"></a> <br>
         <a href="/login" id="8" class="btn1">Sign Out</a><br><br>
         <!--    </ul>-->
@@ -490,7 +600,7 @@ router.get('/staff-information', async (req, res) => {
                 <td>${item.telephone_number}</td>
                 <td>${item.date_of_birth}</td>
                 <td>staff</td>
-                </tr>tr>
+                </tr>
                 `});
   list += `
 </table>
@@ -500,10 +610,25 @@ router.get('/staff-information', async (req, res) => {
     </div>
 
     <br><br>
-    <h2>Change profile photo</h2>
-    <form>
-        <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
-    </form>
+    <div class="co">
+        <h2>Change profile photo</h2>
+        <form>
+            <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
+        </form>
+        <br><br>
+        <h2>Teacher available time</h2>
+        <table id = "course" class="gridtable">
+            <thead>
+            <tr>
+                <th>Lecture Name</th>
+                <th>Teacher Name</th>
+                <th>Available Time</th>
+                <th>Modify</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 </div>
 
 <div class="footer">
@@ -558,6 +683,48 @@ router.get('/staff-information', async (req, res) => {
     }
 
 </script>
+<script>
+    window.onload = function () {
+        var oTab = document.getElementById('course');
+        var url = "/data/information.json";
+        var request = new XMLHttpRequest();
+        request.open("get", url);
+        request.send(null);
+        request.onload = function () {
+            if (request.status === 200) {
+                var oTbody = oTab.tBodies[0];
+                var data = JSON.parse(request.responseText);
+                for (var index = 0; index < data.length; index++) {
+                        var oTr = document.createElement('tr');
+                        oTbody.appendChild(oTr);
+
+                        var oTd = document.createElement('td');
+                        oTd.innerHTML = data[index].text;
+                        oTr.appendChild(oTd);
+
+                        oTd = document.createElement('td');
+                        oTd.innerHTML = data[index].teacher;
+                        oTr.appendChild(oTd);
+
+                        oTd = document.createElement('td');
+                        oTd.innerHTML = data[index].time;
+                        oTr.appendChild(oTd);
+
+                        oTd = document.createElement('td');
+                        oTr.appendChild(oTd);
+
+                        var oA = document.createElement('a');
+                        oA.innerHTML = "delete";
+                        oA.href = "javascript:;";
+                        oTd.appendChild(oA);
+                        oA.onclick = function () {
+                            oTbody.removeChild(this.parentNode.parentNode);
+                        }
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>
                 `;
@@ -577,5 +744,6 @@ router.get('/logout', function (req, res) {
 
   res.redirect('/login')
 })
+
 
 module.exports = router
