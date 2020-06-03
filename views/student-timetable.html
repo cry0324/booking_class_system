@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Timetable</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="../public/css/staff-mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="../public/css/student-mystyle.css" />
     <!-- head -->
+    <link rel="stylesheet" type="text/css" href="../public/css/reset.css" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- demo stylesheet -->
     <link type="text/css" rel="stylesheet" href="../helpers/demo.css?v=2020.2.4325" />
     <link type="text/css" rel="stylesheet" href="../helpers/media/layout.css?v=2020.2.4325" />
     <link type="text/css" rel="stylesheet" href="../helpers/media/elements.css?v=2020.2.4325" />
+
     <!-- helper libraries -->
     <script src="../helpers/jquery-1.12.2.min.js" type="text/javascript"></script>
+
     <!-- daypilot libraries -->
     <script src="../public/js/daypilot-all.min.js?v=2020.2.4325" type="text/javascript"></script>
+
     <!-- /head -->
 
 </head>
 <body>
-
-
 <div class="header">
     <h1>Student Homepage</h1>
 </div>
-<div class="test">
-    <div class="nav">
-        <!--<ul class="nav">-->
-        <a href="/student-information" id="1" class="btn2"><img src="../public/img/My.png" style="width:75px;height: 75px;align-content: center"></a> <br>
-        <a href="/student-information" id="2" class="btn2">Information</a><br><br>
-        <a href="/student-timetable" id="3" class="btn1"><img src="../public/img/Calendar.png" style="width:75px;height: 75px;align-content: center"></a> <br>
-        <a href="/student-timetable" id="4" class="btn1">Timetable</a><br><br>
-<!--        <a href="/student-settings" id="5" class="btn1"><img src="../public/img/Setting.png" style="width:75px;height: 75px;align-content: center"></a> <br>-->
-<!--        <a href="/student-settings" id="6" class="btn1">Settings</a><br><br>-->
-        <a href="/login" id="7" class="btn1"><img src="../public/img/Logout.png" style="width:75px;height: 75px;align-content: center"></a> <br>
-        <a href="/login" id="8" class="btn1">Sign Out</a><br><br>
-        <!--    </ul>-->
-    </div>
+
+<div class="nav">
+    <a href="/student-information" id="1" class="btn2"><img src="../public/img/My.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+    <a href="/student-information" id="2" class="btn2">Information</a><br><br>
+    <a href="/student-timetable" id="3" class="btn1"><img src="../public/img/Calendar.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+    <a href="/student-timetable" id="4" class="btn1">Timetable</a><br><br>
+    <a href="/login" id="7" class="btn1"><img src="../public/img/Logout.png" style="width:75px;height: 75px;align-content: center"></a> <br>
+    <a href="/login" id="8" class="btn1">Sign Out</a><br><br>
+
+</div>
 <div class="section">
     <!-- top -->
     <div id="main">
         <div id="tabs">
             <!-- tabs -->
             <div class="tabs-items">
-
-                <a class='tab selected' href='calendar/index.html'><span>Calendar</span></a>
-                <a class='tab' href='month/index.html'><span>Month</span></a>
+                <a class='tab selected' href='/student-timetable'><span>Calendar</span></a>
             </div>
             <div class="tab header"><div class="bg-help">Outlook-Like Day/Week Calendar Component</div></div>
             <!-- /tabs -->
@@ -53,8 +49,6 @@
 
         <div id="container" >
             <div id="left" class="menu">
-
-
                 <!-- /menu -->
             </div>
         </div>
@@ -89,7 +83,6 @@
                                 var ev = args.source;
                                 //alert("event: " + ev);
                                 args.async = true;  // notify manually using .loaded()
-
                                 // simulating slow server-side load
                                 setTimeout(function() {
                                     args.html = "testing bubble for: <br>" + ev.text();
@@ -152,14 +145,69 @@
                         dp.showEventStartEnd = true;
                         dp.scrollLabelsVisible = true;
 
-                        var e = new DayPilot.Event({
-                            start: DayPilot.Date.today().addHours(12),
-                            end: DayPilot.Date.today().addHours(15),
-                            id: DayPilot.guid(),
-                            text: "Special event"
-                        });
-                        dp.events.add(e);
 
+                        /*var Ajax = function ()
+                        {
+                            $.getJSON ("../data/timetable.json", function (data)
+                            {
+                                $.each (data, function (i, item)
+                                {
+                                    console.log(item.name);
+                                });
+                            });
+                        }();*/
+                        //Parse json and display courses
+                        /*$.ajax({
+                            url: "../data/timetable.json",//json file path
+                            type: "GET",
+                            dataType: "json",
+                            success: function(data) {
+                                for(var i=0;i<data.length;i++){
+                                    var ee = new DayPilot.Event({
+                                        start: data[i].start,
+                                        end: data[i].end,
+                                        id: data[i].id,
+                                        text: data[i].text
+                                    });
+                                    dp.events.add(ee);
+                                }
+                            }
+                        })*/
+                        window.onload = function () {
+                            var url = "/data/timetable.json";
+                            var request = new XMLHttpRequest();
+                            request.open("get", url);
+                            request.send(null);
+                            request.onload = function () {
+                                if (request.status === 200) {
+                                    var data = JSON.parse(request.responseText);
+                                    for(var i=0;i<data.length;i++){
+                                        var ee = new DayPilot.Event({
+                                            start: data[i].start,
+                                            end: data[i].end,
+                                            id: data[i].id,
+                                            text: data[i].text
+                                        });
+                                        dp.events.add(ee);
+                                    }
+                                }
+                            }
+                        }
+                        /*
+                        for (var i = 0; i < 10; i++) {
+                            var duration = Math.floor(Math.random() * 6);
+                            var start = Math.floor(Math.random() * 6) ; // 0 to 6
+                            var hour = Math.floor(Math.random()*24-12) ;
+
+                            e = new DayPilot.Event({
+                                start: DayPilot.Date.today().addDays(start).addHours(hour),
+                                end: DayPilot.Date.today().addDays(start).addHours(hour).addHours(duration),
+                                id: DayPilot.guid(),
+                                text: "Event " + i
+                            });
+                            dp.events.add(e);
+                        }*/
+                        //randomly generate
                         dp.contextMenuSelection = new DayPilot.Menu({
                             items: [
                                 {
