@@ -105,27 +105,6 @@ router.post('/register', function (req, res, next) {
   })
 })
 
-// router.get('/forgotten_password', function (req, res, next) {
-//   res.render('forgotten_password.html')
-// })
-//
-// router.post('/forgotten_password', function (req, res, next) {
-//   var body = req.body
-//   User.findOne({
-//     email: body.email
-//   }, function (err, data) {
-//     if (err) {
-//       return next(err)
-//     }
-//     if (data) {
-//       return res.status(200).json({
-//         err_code: 3,
-//         message: 'The email already exists.'
-//       })
-//       return res.send('The email already exists, please try agian.')
-//     }
-//     })
-// })
 
 router.get('/student', function (req, res, next) {
   res.render('student.html')
@@ -324,9 +303,7 @@ router.get('/student-information', async (req, res) => {
   res.end("ok")
 })
 
-// router.get('/student-settings', function (req, res, next) {
-//   res.render('student-settings.html')
-// })
+
 router.get('/student-timetable', function (req, res, next) {
   res.render('student-timetable.html')
 })
@@ -530,9 +507,6 @@ router.get('/teacher-information', async (req, res) => {
   res.end("ok")
 })
 
-// router.get('/teacher-settings', function (req, res, next) {
-//   res.render('teacher-settings.html')
-// })
 router.get('/teacher-timetable', function (req, res, next) {
   res.render('teacher-timetable.html')
 })
@@ -732,9 +706,6 @@ router.get('/staff-information', async (req, res) => {
   res.end("ok")
 })
 
-// router.get('/staff-settings', function (req, res, next) {
-//   res.render('staff-settings.html')
-// })
 router.get('/staff-timetable', function (req, res, next) {
   res.render('staff-timetable.html')
 })
