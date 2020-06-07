@@ -146,33 +146,7 @@
                         dp.scrollLabelsVisible = true;
 
 
-                        /*var Ajax = function ()
-                        {
-                            $.getJSON ("../data/timetable.json", function (data)
-                            {
-                                $.each (data, function (i, item)
-                                {
-                                    console.log(item.name);
-                                });
-                            });
-                        }();*/
-                        //Parse json and display courses
-                        /*$.ajax({
-                            url: "../data/timetable.json",//json file path
-                            type: "GET",
-                            dataType: "json",
-                            success: function(data) {
-                                for(var i=0;i<data.length;i++){
-                                    var ee = new DayPilot.Event({
-                                        start: data[i].start,
-                                        end: data[i].end,
-                                        id: data[i].id,
-                                        text: data[i].text
-                                    });
-                                    dp.events.add(ee);
-                                }
-                            }
-                        })*/
+                    
                         window.onload = function () {
                             var url = "/data/timetable.json";
                             var request = new XMLHttpRequest();
@@ -193,20 +167,7 @@
                                 }
                             }
                         }
-                        /*
-                        for (var i = 0; i < 10; i++) {
-                            var duration = Math.floor(Math.random() * 6);
-                            var start = Math.floor(Math.random() * 6) ; // 0 to 6
-                            var hour = Math.floor(Math.random()*24-12) ;
-
-                            e = new DayPilot.Event({
-                                start: DayPilot.Date.today().addDays(start).addHours(hour),
-                                end: DayPilot.Date.today().addDays(start).addHours(hour).addHours(duration),
-                                id: DayPilot.guid(),
-                                text: "Event " + i
-                            });
-                            dp.events.add(e);
-                        }*/
+                    
                         //randomly generate
                         dp.contextMenuSelection = new DayPilot.Menu({
                             items: [
