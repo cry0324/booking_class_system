@@ -1,0 +1,20 @@
+[
+  {
+    "time": "9:30 - 11:30",
+    "teacher": "Severus Snape",
+    "id" : "1",
+    "text": "Math"
+  },
+  {
+    "time": "15:00 - 17:00",
+    "teacher": "Severus Snape",
+    "id" : "2",
+    "text": "Programming in C"
+  },
+  {
+    "time": "12:00 - 14:00",
+    "teacher": "Severus Snape",
+    "id" : "3",
+    "text": "Java"
+  }
+]

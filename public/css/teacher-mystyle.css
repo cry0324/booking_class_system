@@ -1,0 +1,194 @@
+html, body{
+    background:#f2f2f2;
+}
+.header {
+    background-color:#4bb57a;
+    height: 30px;
+    font-size: 30px;
+    font-weight:bold;
+    color:white;
+    text-align:center;
+    padding:30px;
+    vertical-align:middle;
+}
+.nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:800px;
+    width:100px;
+    float:left;
+    padding:5px;
+    text-align: center;
+}
+.nav a {
+    color: darkslateblue;
+    font:bold 14px Georgia;
+    text-decoration: none;
+}
+
+.nav a:hover{
+    color: #a1a1a1;
+    text-decoration: underline;
+}
+.section {
+    width:90%;
+    float:left;
+    padding:0px;
+}
+.contact .co{
+    float: left;
+    width: 300px;
+    /*height: 100px;*/
+    /*background-color: yellow;*/
+}
+
+.contact .nu {
+    float: left;
+    width: 300px;
+    height: 100px;
+    /*background-color: red;*/
+}
+
+.settings .sp {
+    margin: 0 20px;
+}
+.settings .sp{
+    float: left;
+    width: 300px;
+
+}
+
+.settings .pwd{
+    width: 276px;
+    height: 33px;
+    line-height: 33px;
+    background: url("../img/input.png") no-repeat ;
+    _background-attachment: fixed;
+    border: none;
+    padding: 0px 10px;
+    margin: 0px 0px 16px;
+}
+
+.contact .txt{
+    width: 276px;
+    height: 33px;
+    line-height: 33px;
+    background: url("../img/input.png") no-repeat ;
+    _background-attachment: fixed;
+    border: none;
+    padding: 0px 10px;
+    margin: 0px 0px 16px;
+}
+
+.nu img{
+    float: left;
+    margin-right: 8px;
+}
+
+.contact .co{
+    margin: 0 20px;
+}
+
+.contact .txt{
+    width: 276px;
+    height: 33px;
+    line-height: 33px;
+    background: url("../img/input.png") no-repeat ;
+    /*for IE6 */
+    _background-attachment: fixed;
+    border: none;
+    padding: 0px 10px;
+    margin: 0px 0px 16px;
+}
+.settings h2{
+    color: #444;
+    font: 13px/1 Georgia;
+}
+
+.contact h2{
+    color: #444;
+    font: 15px/1 Georgia;
+}
+.settings h2{
+    color: #444;
+    font: 13px/1 Georgia;
+}
+
+.contact .tarea{
+    width: 276px;
+    height: 114px;
+    background: url("../img/textarea.png") no-repeat;
+    _background-attachment: fixed;
+    border: none;
+    overflow: auto;
+    resize: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.contact .btn{
+    width: 163px;
+    height: 32px;
+    background: url("../img/btn02.png") no-repeat;
+    border: none;
+
+
+    padding: 0;
+    margin: 11px 0px 23px;
+
+
+    color: white;
+    font: 13px Georgia ;
+
+    text-align: left;
+    text-indent: 1em;
+    cursor:pointer;
+}
+.footer {
+    background-color:#4bb57a;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+
+}
+
+table.gridtable {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #ffffff;
+}
+
+#box1{
+    /*display: none;*/
+}
+
+#box2{
+    display: none;
+}
+#box3{
+    /*display: none;*/
+}
+
+#box4{
+    display: none;
+}
+
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../public/css/login.css">
+  <link rel="icon" href="../public/img/BCS.jpeg" alt="BCS-logo">
+</head>
+
+<body>
+<div class="banner">
+  <h1>Create a new account</h1>
+  <div class="main">
+    <div class="header">
+      <a href="/">
+        <img src="../public/img/BCS.jpeg" alt="">
+      </a>
+    </div>
+    <form id="register_form" method="post" action="/register">
+      <div class="form-group">
+        <label for="email"></label>
+        <input type="email" class="form_control" id="email" name="email" placeholder="Email Address" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password"></label>
+        <input type="password" class="form_control" id="password" name="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="fullname"></label>
+        <input type="fullname" class="form_control" id="fullname" name="fullname" placeholder="Full Name">
+      </div>
+      <div class="form-group">
+        <label for="date_of_birth"></label>
+        <input type="date_of_birth" class="form_control" id="date_of_birth" name="date_of_birth" placeholder="Date of Birth">
+      </div>
+      <div class="form-group">
+        <label for="telephone_number"></label>
+        <input type="telephone_number" class="form_control" id="telephone_number" name="telephone_number" placeholder="Phone Number">
+      </div>
+
+      <div class="form-group">
+        <label for="status"></label>
+        <div>
+          <label class="radio-inline">
+            <input type="radio" name="status" id="inlineRadio1" value="0">student
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="status" id="inlineRadio2" value="1">teacher
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="status" id="inlineRadio3" value="2">staff
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success btn-block">Register</button>
+    </form>
+    <div class="message">
+      <p>Already a member?<a href="/login"> Sign in</a>.</p>
+    </div>
+  </div>
+</div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script>
+    $('#register_form').on('submit', function (e) {
+      e.preventDefault()
+      var formData = $(this).serialize()
+      $.ajax({
+        url: '/register',
+        type: 'post',
+        data: formData,
+        dataType: 'json',
+        success: function (data) {
+          var err_code = data.err_code
+          if (err_code === 0) {
+            window.location.href = '/student'
+          } else if (err_code === 1) {
+            window.location.href = '/teacher'
+          } else if (err_code === 2) {
+            window.location.href = '/staff'
+          } else if (err_code === 3) {
+            window.alert('The email already exists.')
+          } else if (err_code === 500) {
+            window.alert('The server is busy, please try again later!')
+          }
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>
